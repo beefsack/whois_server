@@ -7,6 +7,8 @@ def hash_or_nil(value)
   value ? Hash[*value.members.zip(value.values).flatten] : nil
 end
 
+disable :protection # This is a read only API, keep it open
+
 get '/:domain' do
   content_type :json
   c = Whois::Client.new
