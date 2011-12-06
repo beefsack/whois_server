@@ -10,6 +10,7 @@ end
 disable :protection # This is a read only API, keep it open
 
 get '/:domain' do
+  response.headers["Access-Control-Allow-Origin"] = "*"
   content_type :json
   c = Whois::Client.new
   begin
@@ -40,5 +41,6 @@ get '/:domain' do
 end
 
 get "/" do
+  response.headers["Access-Control-Allow-Origin"] = "*"
   "Add a domain to the URL to check.  For example: http://#{request.host}/google.com"
 end
